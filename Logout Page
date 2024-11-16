@@ -1,0 +1,74 @@
+package com.example.bsafe;
+
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+public class Settings extends AppCompatActivity {
+    private FirebaseAuth auth;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.setting);
+// Initialize Firebase Realtime Database
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        Button button1 = findViewById(R.id.button13);
+        Button button2 = findViewById(R.id.button15);
+        Button button3 = findViewById(R.id.button16);
+        // Initialize Firebase Authentication
+        auth = FirebaseAuth.getInstance();
+        Button button4 = findViewById(R.id.button17);
+
+        button1.setOnClickListener(view -> {
+            // Handle button 1 click
+            Intent intent = new Intent(Settings.this, DashBoard.class);
+            startActivity(intent);
+        });
+
+        button2.setOnClickListener(view -> {
+            // Handle button 2 click
+            Intent intent = new Intent(Settings.this, Friend.class);
+            startActivity(intent);
+        });
+
+        button3.setOnClickListener(view -> {
+                 // Handle button 1 click
+            Intent intent = new Intent(Settings.this, About.class);
+             startActivity(intent);
+        });
+        button4.setOnClickListener(view -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(Settings.this);
+            builder.setTitle("Are You sure you want to Logout?");
+            builder.setPositiveButton("Yes", (dialog, which) -> {
+                // Handle yes click
+                if (auth.getCurrentUser() != null) {
+                    auth.signOut();
+                    // Show pop-up message only when the logout is successful
+                    Toast.makeText(Settings.this, "Logged out successfully", Toast.LENGTH_SHORT).show();
+                    // Navigate to the login page
+                    Intent intent = new Intent(Settings.this, SignupActivity.class);
+                    startActivity(intent);
+                    finish(); // Add this line to close the current activity
+                }
+            });
+            builder.setNegativeButton("No", (dialog, which) -> {
+                // Handle no click
+            });
+            builder.show();
+        });
+    }
+}
