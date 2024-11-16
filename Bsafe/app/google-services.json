@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "204921231133",
+    "firebase_url": "https://bsafe-6cd35-default-rtdb.firebaseio.com",
+    "project_id": "bsafe-6cd35",
+    "storage_bucket": "bsafe-6cd35.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:204921231133:android:37fa12b1d9fa556854f3f4",
+        "android_client_info": {
+          "package_name": "com.example.bsafe"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCe9Et4va9lcVPL5iiOmkSTo5SkKefmTP4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
